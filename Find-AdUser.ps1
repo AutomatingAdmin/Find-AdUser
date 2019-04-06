@@ -5,7 +5,7 @@ Function Find-AdUser ($Uinput) {
 		$Uinput = Read-Host -prompt "Enter part of a users name to find"
 	}
 	# Display results
-	[array]$users = Get-ADUser -Filter {anr -like $Uinput} -properties emailAddress, givenName
+	[array]$users = Get-ADUser -Filter {anr -like $Uinput} -properties emailAddress
 	# If no matches found
 	If ($users.count -lt 1) {
 		Write-Host `t"Sorry, no matching users found" -fore red
