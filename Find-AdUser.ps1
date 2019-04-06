@@ -5,7 +5,7 @@ Function Find-AdUser ($Uinput) {
 		$Uinput = Read-Host -prompt "Enter part of a users name to find"
 	}
 	# Display results
-	[array]$users = Get-ADUser -server server1 -Filter {anr -like $Uinput} -properties emailAddress, givenName
+	[array]$users = Get-ADUser -Filter {anr -like $Uinput} -properties emailAddress, givenName
 	# If no matches found
 	If ($users.count -lt 1) {
 		Write-Host `t"Sorry, no matching users found" -fore red
@@ -33,8 +33,8 @@ Function Find-AdUser ($Uinput) {
 			$originalColor = $Host.UI.RawUI.ForegroundColor
 			Write-Host `n"Found the following possible matches:" -fore green
 			$format = 	@{Label="Number"; Expression={If($_.number % 2){[console]::ForegroundColor="white";$_.number}Else{[console]::ForegroundColor="cyan";$_.number}}; width=15; Alignment="center"},
-						@{Label="Name"; Expression={$_.name}; width=30},
-						@{Label="Email Address"; Expression={$_.email}; width=50}
+					@{Label="Name"; Expression={$_.name}; width=30},
+					@{Label="Email Address"; Expression={$_.email}; width=50}
 			$results | ft $format
 			$Host.UI.RawUI.ForegroundColor = $originalColor
 			# Prompt for a choice from the above results
