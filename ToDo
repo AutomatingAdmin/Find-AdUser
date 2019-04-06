@@ -1,0 +1,2 @@
+Return more variables such as DistinguishedName, OU or Extension Attributes if found
+Add support for ADSI searcher in case user doesnt have access to Get-AdUser
